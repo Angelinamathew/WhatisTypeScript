@@ -1,4 +1,5 @@
-import './style.css';
+// Import stylesheets
+// import './style.css';
 
 const form: HTMLFormElement = document.querySelector('#defineform')!;
 
@@ -10,22 +11,31 @@ form.onsubmit = () => {
   console.log(text);
 
   fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${text}`)
-.then(function (response) {
-    return response.json();
-})
-.then(function(data) {
-    appendData(data);
-})
-.catch(function(err) {
-    console.log('error: ' + err);
-})
+  .then(function (response) {
+      return response.json();
+  })
+  .then(function(data) {
+      appendData(data);
+  })
+  .catch(function(err) {
+      console.log('error: ' + err);
+  })
 
-  return false; // prevent reload
+    return false; // prevent reload
 
 };
-
-
-
+// function appendData(data) {
+//   let mainContainer = document.getElementById("quotes")!;
+//   // let p = document.createElement("p");
+//   // let w = document.createElement("p");
+//   let p = document.getElementById("word")!;
+//   let w = document.getElementById("definition")!;
+//   w.innerHTML = data[0].word;
+//   p.innerHTML = data[0].meanings[0].definitions[0].definition;
+//   console.log(data[0])
+//   mainContainer.appendChild(w);
+//   mainContainer.appendChild(p);
+// }
 function appendData(data) {
   let mainContainer = document.getElementById("quotes")!;
   // let p = document.createElement("p");

@@ -1,6 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-require("./style.css");
+// Import stylesheets
+// import './style.css';
 var form = document.querySelector('#defineform');
 form.onsubmit = function () {
     var formData = new FormData(form);
