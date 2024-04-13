@@ -1,5 +1,6 @@
-// Import stylesheets
-// import './style.css';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+require("./style.css");
 var form = document.querySelector('#defineform');
 form.onsubmit = function () {
     var formData = new FormData(form);
@@ -18,16 +19,6 @@ form.onsubmit = function () {
     });
     return false; // prevent reload
 };
-fetch("https://api.dictionaryapi.dev/api/v2/entries/en/hello")
-    .then(function (response) {
-    return response.json();
-})
-    .then(function (data) {
-    appendData(data);
-})
-    .catch(function (err) {
-    console.log('error: ' + err);
-});
 function appendData(data) {
     var mainContainer = document.getElementById("quotes");
     // let p = document.createElement("p");
