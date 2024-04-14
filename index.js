@@ -20,12 +20,48 @@ form.onsubmit = function () {
 };
 function appendData(data) {
     var mainContainer = document.getElementById("quotes");
-    // let p = document.createElement("p");
-    // let w = document.createElement("p");
     var w = document.getElementById("word");
-    var p = document.getElementById("definition");
+    var definition = document.getElementById("definition");
+    var phonetics = document.getElementById("phenotics");
+    var synonyms = document.getElementById("synonyms");
     w.innerHTML = data[0].word;
-    p.innerHTML = data[0].meanings[0].definitions[0].definition;
+    // d.innerHTML = data[0].meanings[0].definitions[0].definition;
+    // p.innerHTML = `${data[0].phonetics[0].text}`;
+    var phoneticFound = false;
+    for (var i = 0; i < data[0].phonetics.length; i++) {
+        if (data[0].phonetics[i].text) {
+            phonetics.innerHTML = data[0].phonetics[i].text;
+            phoneticFound = true;
+            break;
+        }
+    }
+    if (!phoneticFound) {
+        phonetics.innerHTML = "N/A";
+    }
+    var definitionFound = false;
+    for (var i = 0; i < data[0].meanings.length; i++) {
+        if (data[0].meanings[i].definitions[0].definition) {
+            definition.innerHTML = "<strong>Definition:</strong> ".concat(data[0].meanings[i].definitions[0].definition);
+            definitionFound = true;
+            break;
+        }
+    }
+    if (!definitionFound) {
+        definition.innerHTML = "N/A";
+    }
+    // if (data[0].meanings[0].definitions[0].synonyms) {
+    //   s.innerHTML = `${data[0].meanings[0].definitions[0].synonyms}`;
+    // } else {
+    //   s.innerHTML = "Not available";
+    // }
+    synonyms.innerHTML = "<strong>Synonyms:</strong>";
+    for (var i = 0; i < data[0].meanings.length; i++) {
+        if (data[0].meanings[i].synonyms[0]) {
+            var synonymsThing = document.createElement("ul");
+            synonymsThing.textContent = data[0].meanings[i].synonyms;
+            synonyms.appendChild(synonymsThing);
+        }
+    }
     console.log(data[0]);
     // mainContainer.appendChild(w);
     // mainContainer.appendChild(p);

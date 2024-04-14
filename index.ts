@@ -24,26 +24,56 @@ form.onsubmit = () => {
     return false; // prevent reload
 
 };
-// function appendData(data) {
-//   let mainContainer = document.getElementById("quotes")!;
-//   // let p = document.createElement("p");
-//   // let w = document.createElement("p");
-//   let p = document.getElementById("word")!;
-//   let w = document.getElementById("definition")!;
-//   w.innerHTML = data[0].word;
-//   p.innerHTML = data[0].meanings[0].definitions[0].definition;
-//   console.log(data[0])
-//   mainContainer.appendChild(w);
-//   mainContainer.appendChild(p);
-// }
 function appendData(data) {
   let mainContainer = document.getElementById("quotes")!;
-  // let p = document.createElement("p");
-  // let w = document.createElement("p");
   let w = document.getElementById("word")!;
-  let p = document.getElementById("definition")!;
+  let definition = document.getElementById("definition")!;
+  let phonetics = document.getElementById("phenotics")!;
+  let synonyms = document.getElementById("synonyms")!;
   w.innerHTML = data[0].word;
-  p.innerHTML = data[0].meanings[0].definitions[0].definition;
+  
+  // d.innerHTML = data[0].meanings[0].definitions[0].definition;
+  // p.innerHTML = `${data[0].phonetics[0].text}`;
+  let phoneticFound = false;
+  
+  for (let i = 0; i < data[0].phonetics.length; i++) {
+  if (data[0].phonetics[i].text) {
+    phonetics.innerHTML = data[0].phonetics[i].text;
+    phoneticFound = true;
+    break;
+  }
+  }
+  if (!phoneticFound) {
+    phonetics.innerHTML = "N/A";
+  }
+  let definitionFound = false;
+
+for (let i = 0; i < data[0].meanings.length; i++){
+  if(data[0].meanings[i].definitions[0].definition){
+    definition.innerHTML = `<strong>Definition:</strong> ${data[0].meanings[i].definitions[0].definition}`;
+    definitionFound = true;
+    break;
+  }
+}
+if (!definitionFound) {
+  definition.innerHTML = "N/A";
+}
+  
+
+  // if (data[0].meanings[0].definitions[0].synonyms) {
+  //   s.innerHTML = `${data[0].meanings[0].definitions[0].synonyms}`;
+  // } else {
+  //   s.innerHTML = "Not available";
+  // }
+  synonyms.innerHTML =`<strong>Synonyms:</strong>`;
+
+  for(let i = 0; i < data[0].meanings.length; i++){
+   if(data[0].meanings[i].synonyms[0]){
+     let synonymsThing = document.createElement("ul");
+     synonymsThing.textContent = data[0].meanings[i].synonyms;
+     synonyms.appendChild(synonymsThing);
+   }
+  }
   console.log(data[0])
   // mainContainer.appendChild(w);
   // mainContainer.appendChild(p);
