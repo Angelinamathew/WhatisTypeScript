@@ -67,34 +67,34 @@
 
 <main class="container">
 
-  <script src = "index.js"></script>
+  <!-- added javascript file -->
+  <script src="index.js"></script>
 
-  <div class="bg-light p-5 rounded">
+<div class="bg-light p-5 rounded">
 
-    <div id="quotes"></div>
+  <div id="quotes"></div>
+  <h1 id="word">Definition</h1>
+  <p class="lead"></p>
+  <ul class="list-unstyled">
 
-    <h1><div id = "word"></div></h1>
-    <p><div id = "phenotics"></div></p>
-   
-    <p class="lead"></p>
-    <ul class="list-unstyled">
-  
-        <li></li> 
-        <li id="definition"></li>
-        <li id = "synonyms"></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li>
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </li>
-        <li></li>
-      </ul>
-  </div>
+      <li id="phenotics"></li>
+      <audio id="audio" controls>
+        <source id="audioSource" src="">
+      </audio>
+      <li id="definition"><b>Definition:</b></li>
+      <li><b>Synonyms:</b>
+        <ul id="synonyms">
+        </ul>
+      </li>
+      <li><b>Antonyms:</b>
+        <ul id="antonyms">
+        </ul>
+      </li>
+      
+
+      <li></li>
+    </ul>
+</div>
 </main>
 
 
